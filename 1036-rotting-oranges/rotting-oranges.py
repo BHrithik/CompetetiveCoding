@@ -23,11 +23,13 @@ class Solution:
             return newGrid
         prevGrid = []
         time = 0
-        while grid != prevGrid and not AllRotten(grid):
+        flag = AllRotten(grid)
+        while grid != prevGrid and not flag:
             prevGrid = deepcopy(grid)
             grid = rot(grid)
             time = time +1
-        if AllRotten(grid):
+            flag = AllRotten(grid)
+        if flag:
             return time
         else:
             return -1
