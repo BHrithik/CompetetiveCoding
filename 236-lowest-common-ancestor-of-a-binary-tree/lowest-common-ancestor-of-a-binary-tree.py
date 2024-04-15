@@ -13,4 +13,7 @@ class Solution:
         r = self.lowestCommonAncestor(root.right,p,q)
         if l and r:
             return root
-        return l or r
+        elif r:
+            return r
+        else:
+            return l
