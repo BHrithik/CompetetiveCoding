@@ -25,6 +25,6 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    enclave_count += dfs(i, j)
+                    enclave_count += 1
                     
         return enclave_count
