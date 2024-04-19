@@ -21,10 +21,4 @@ class Solution:
             dfs(m-1, j)  # Bottom row
         
         # Then, count the enclaves
-        enclave_count = 0
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == 1:
-                    enclave_count += 1
-                    
-        return enclave_count
+        return sum([sum(i) for i in grid])
