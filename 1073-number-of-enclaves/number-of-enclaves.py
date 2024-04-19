@@ -6,11 +6,9 @@ class Solution:
         def dfs(i, j):
             if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == 0:
                 return 0
-            grid[i][j] = 0  # Mark as visited
-            count = 1  # Start counting this cell
+            grid[i][j] = 0 
             for di, dj in directions:
-                count += dfs(i + di, j + dj)
-            return count
+                dfs(i + di, j + dj)
         
         # First, clear all land cells connected to the borders
         for i in range(m):
