@@ -14,18 +14,10 @@ class Solution:
             if not root:
                 return None
             if cur_depth == depth-1:
-                leftman = root.left
-                rightman = root.right
-                root.left = TreeNode(val)
-                root.right = TreeNode(val)
-                root.left.left = leftman
-                root.right.right = rightman
+                root.left = TreeNode(val,root.left,None)
+                root.right = TreeNode(val,None,root.right)
                 return root
             root.left = add(root.left,val,depth,cur_depth+1)
             root.right = add(root.right,val,depth,cur_depth+1)
             return root
-        
         return add(root,val,depth,1)
-
-                
-
