@@ -8,11 +8,9 @@ class Solution:
     def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
         def add(root, val, depth, cur_depth):
             if depth == 1:
-                new_root = TreeNode(val)
-                new_root.left = root
+                new_root = TreeNode(val,root,None)
                 return new_root
-            if not root:
-                return None
+            if not root: return None
             if cur_depth == depth-1:
                 root.left = TreeNode(val,root.left,None)
                 root.right = TreeNode(val,None,root.right)
