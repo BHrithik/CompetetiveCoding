@@ -1,16 +1,5 @@
 class Solution:
     def countTriplets(self, arr: List[int]) -> int:
-        def helper(i,j,k):
-            a = arr[i:j]
-            b = arr[j:k+1]
-            ansA = 0
-            ansB = 0
-            for i in a:
-                ansA = ansA ^ i
-            for j in b:
-                ansB = ansB ^ j
-            if ansA == ansB:
-                return True
         count = 0
         ans = []
         for i in range(len(arr)-1):
