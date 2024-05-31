@@ -5,8 +5,8 @@ class Solution:
         for i in nums:
             if i == 0:
                 curMin,curMax = 1, 1
-            temp = i*curMax
-            curMax = max(i*curMax,i*curMin,i)
-            curMin = min(i*curMin,temp,i)
+            temp = i*curMin
+            curMin = min(i*curMin,i*curMax,i)
+            curMax = max(i*curMax,temp,i)
             res = max(res,curMax)      
         return res  
