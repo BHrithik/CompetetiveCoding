@@ -28,9 +28,10 @@ class Solution:
                 markSafe(i,j+1)
                 markSafe(i,j-1)
 
-        for i,j in border_indices:
-            if board[i][j] == "O":
-                markSafe(i,j)
+        for i in range(0,len(board)):
+            for j in range(0,len(board[i])):
+                if (i==0 or i==len(board)-1 or j==0 or j==len(board[i])-1) and board[i][j]=="O":
+                    markSafe(i,j)
         for i in range(0,len(board)):
             for j in range(0,len(board[0])):
                 if board[i][j] == "O":
