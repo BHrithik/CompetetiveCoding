@@ -3,22 +3,11 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        dirs = [[1,0],[0,1],[0,-1],[-1,0]]
-        rows = len(board)
-        cols = len(board[0])
-        visited = set()
-
+        directions = [(1,0),(0,1),(0,-1),(-1,0)]
         def markSafe(i,j):
-            if (i,j) in visited:
-                return
-            if i >= 0 and i <= rows-1 and j >= 0 and j <= cols-1 and board[i][j] == "O":
+            if i >= 0 and i <= len(board)-1 and j >= 0 and j <= len(board[0])-1 and board[i][j] == "O":
                 board[i][j] = "S"
-                visited.add((i,j))
-                markSafe(i+1,j)
-                markSafe(i-1,j)
-                markSafe(i,j+1)
-                markSafe(i,j-1)
-
+                for di,dj in directions: markSafe(i+di,j+dj)
         for i in range(0,len(board)):
             for j in range(0,len(board[i])):
                 if (i==0 or i==len(board)-1 or j==0 or j==len(board[i])-1) and board[i][j]=="O":
