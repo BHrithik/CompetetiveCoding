@@ -7,15 +7,6 @@ class Solution:
         rows = len(board)
         cols = len(board[0])
         visited = set()
-        border_indices = []
-        for col in range(cols):
-            border_indices.append((0, col))
-        for col in range(cols):
-            border_indices.append((rows - 1, col))
-        for row in range(1, rows - 1):
-            border_indices.append((row, 0))
-        for row in range(1, rows - 1):
-            border_indices.append((row, cols - 1))
 
         def markSafe(i,j):
             if (i,j) in visited:
