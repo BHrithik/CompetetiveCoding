@@ -8,8 +8,6 @@ class Solution:
         print(f"this is the long string:",l_s)
         for i in words:
             dummy = l_s.replace(i,"")
-            print(i)
-            print(dummy)
             if len(dummy) < len(l_s)-len(i):
                 ans.append(i)
         return ans
