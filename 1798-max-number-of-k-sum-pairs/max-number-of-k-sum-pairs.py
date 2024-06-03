@@ -4,18 +4,14 @@ class Solution:
         l = 0
         r = len(nums)-1
         count = 0
-        flag = False
         while l < r:
-            if nums[l]+nums[r] == k:
-                print(f"{nums[l]} {nums[r]}")
+            cur_total = nums[l]+nums[r]
+            if cur_total == k:
                 count = count+1
-                flag = True
-            if nums[l]+nums[r] < k:
-                l = l+1
-            if nums[l]+nums[r] > k:
-                r = r-1
-            if flag:
                 l = l+1
                 r = r-1
-                flag = False
+            if cur_total < k:
+                l = l+1
+            if cur_total > k:
+                r = r-1
         return count
