@@ -13,14 +13,10 @@ class BSTIterator:
         def dfs(dummy):
             if not dummy:
                 return
+            dfs(dummy.left)
             self.arr.append(dummy.val)
-            if dummy.left:
-                dfs(dummy.left)
-            if dummy.right:
-                dfs(dummy.right)
+            dfs(dummy.right)
         dfs(dummy)
-        print(self.arr)
-        self.arr.sort()
         self.count = 0
 
 
