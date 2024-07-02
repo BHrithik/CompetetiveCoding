@@ -10,12 +10,9 @@ class Solution:
                     continue
                 if asteroids[i] > 0 and asteroids[i+1] < 0:
                     if abs(asteroids[i]) > abs(asteroids[i+1]):
-                        asteroids= asteroids[:i+1]+asteroids[i+2:]
-                        return self.asteroidCollision(asteroids)
+                        return self.asteroidCollision(asteroids[:i+1]+asteroids[i+2:])
                     elif abs(asteroids[i]) < abs(asteroids[i+1]):
-                        asteroids= asteroids[:i]+asteroids[i+1:]
-                        return self.asteroidCollision(asteroids)
+                        return self.asteroidCollision(asteroids[:i]+asteroids[i+1:])
                     else:
-                        asteroids= asteroids[:i]+asteroids[i+2:]
-                        return self.asteroidCollision(asteroids)
+                        return self.asteroidCollision(asteroids[:i]+asteroids[i+2:])
         return asteroids
