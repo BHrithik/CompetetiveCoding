@@ -9,12 +9,8 @@ class Solution:
         nums = nums[::-1]
         posMax = len(nums)-nums.index(maxNum)-1
         if posMin > posMax:
-            #we can use a common move to use minimum moves
-            movesForMin = posMin-1
-            movesForMax = len(nums)-posMax-1
+            return posMin-1+len(nums)-posMax-1
         if posMin < posMax:
-            movesForMin = posMin
-            movesForMax = len(nums)-posMax-1
+            return posMin+len(nums)-posMax-1
         if posMin==posMax:
             return 0
-        return movesForMin+movesForMax
