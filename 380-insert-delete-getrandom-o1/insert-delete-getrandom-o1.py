@@ -18,8 +18,7 @@ class RandomizedSet:
             return False
 
     def getRandom(self) -> int:
-        num = random.randrange(0,len(self.hashMap))
-        return list(self.hashMap)[num]
+        return random.choice(list(self.hashMap))
 
 
 # Your RandomizedSet object will be instantiated and called as such:
