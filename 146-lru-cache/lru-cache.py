@@ -15,6 +15,6 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
             self.cache.pop(key)
-        elif len(self.cache) >= self.capacity:
+        elif len(self.cache) == self.capacity:
             self.cache.popitem(last=False)
         self.cache[key] = value
