@@ -21,7 +21,6 @@ class Solution:
                 press_twice -= 1
             else:
                 count += 3 * i[1]
-                press_thrice -= 1
         return count
 
         
