@@ -1,7 +1,5 @@
 class Solution:
     def minimumKeypresses(self, s: str) -> int:
-        # if len(s) < 9:
-        #     return len(s)
         cn = Counter(s)
         keys = defaultdict(list)
         count = 0
@@ -9,9 +7,7 @@ class Solution:
         press_twice = 9
         press_thrice = 9
         values = list(cn.items())
-        values.sort(key=lambda x : x[1])
-        values = values[::-1]
-        print(values)
+        values.sort(key=lambda x : -x[1])
         for i in values:
             if press_once > 0:
                 count += 1 * i[1]
