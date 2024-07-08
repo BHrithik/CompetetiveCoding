@@ -13,10 +13,8 @@ class Solution:
                 possibleTuples[webRoute] += 1
         maxVal = max(possibleTuples.values())
         ans = []
-        print(possibleTuples)
         for r,val in possibleTuples.items():
             if maxVal == val:
                 ans.append(r)
-        print(ans)
         ans.sort()
         return ans[0]
