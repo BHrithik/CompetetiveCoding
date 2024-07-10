@@ -1,10 +1,10 @@
 class Solution:
     def minOperations(self, logs: List[str]) -> int:
         current_count = 0
-        logs = [i for i in logs if i!= "./"]
+        # logs = [i for i in logs if i!= "./"]
         for i in logs:
-            # if i[0] == "." and i[1] == "/":
-            #     continue
+            if i[0] == "." and i[1] == "/":
+                continue
             if len(i)==3 and i[0] == "." and i[1] == "." and i[2] == "/":
                 current_count -= 1
                 current_count = max(0,current_count)
