@@ -3,9 +3,9 @@ class Solution:
         current_count = 0
         # logs = [i for i in logs if i!= "./"]
         for i in logs:
-            if i[0] == "." and i[1] == "/":
+            if i == "./":
                 continue
-            if len(i)==3 and i[0] == "." and i[1] == "." and i[2] == "/":
+            if i == "../":
                 current_count -= 1
                 current_count = max(0,current_count)
             else:
