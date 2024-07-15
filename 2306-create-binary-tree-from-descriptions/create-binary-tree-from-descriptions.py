@@ -11,8 +11,6 @@ class Solution:
         for (p,c,il) in descriptions:
             tree[p].append((c,il))
             children.append(c)
-        print(tree)
-        print(children)
         for i in tree:
             if i not in children:
                 root = i
