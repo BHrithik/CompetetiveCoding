@@ -13,7 +13,6 @@ class Solution:
             arr.append(root.val)
             populateArr(root.right)
         populateArr(root)
-        print(arr)
         arr.sort()
         def populateTree(nums):
             if not nums:
