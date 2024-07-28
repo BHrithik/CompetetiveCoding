@@ -8,8 +8,16 @@ class Solution:
         new_head = head
         n = 0
         nums = []
-        while new_head:
-            n += 1
-            nums.append(new_head.val)
-            new_head = new_head.next
-        return sorted([nums[i]+nums[n-1-i] for i in range(0,n//2)],reverse=True)[0]
+        slow = head
+        fast = head.next
+        while fast:
+            nums.append(slow.val)
+            slow = slow.next
+            if not fast.next:
+                break
+            fast = fast.next.next
+        maxSum = float('-inf')
+        while slow:
+            maxSum = max(maxSum,slow.val+nums.pop())
+            slow = slow.next
+        return maxSum
