@@ -1,35 +1,35 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        def AllRotten(grid):
-            for i in range(0,len(grid)):
-                for j in range(0,len(grid[0])):
-                    if grid[i][j] == 1:
-                        return False
-            return True
-        def rot(grid):
-            newGrid = deepcopy(grid)
-            for i in range(0,len(grid)):
-                for j in range(0,len(grid[0])):
-                    if grid[i][j] == 2:
-                        # print(f"found rotten at {i} {j}")
-                        if i-1 >=0 and grid[i-1][j] == 1:
-                            newGrid[i-1][j] = 2
-                        if j-1 >=0 and grid[i][j-1] == 1:
-                            newGrid[i][j-1] = 2
-                        if j+1 <len(grid[0]) and grid[i][j+1] == 1:
-                            newGrid[i][j+1] = 2
-                        if i+1 <len(grid) and grid[i+1][j] == 1:
-                            newGrid[i+1][j] = 2
-            return newGrid
-        prevGrid = []
+        oranges = []
         time = 0
-        flag = AllRotten(grid)
-        while grid != prevGrid and not flag:
-            prevGrid = deepcopy(grid)
-            grid = rot(grid)
-            time = time +1
-            flag = AllRotten(grid)
-        if flag:
-            return time
-        else:
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == 2:
+                    oranges.append((i,j,time))
+        r_oranges = deque(oranges)
+        directions = [(1,0),(0,1),(-1,0),(0,-1)]
+        max_time = -1
+        while r_oranges:
+            i,j,cur_time = r_oranges.popleft()
+            max_time = max(cur_time,max_time)
+            for di,dj in directions:
+                if 0 <= i+di < len(grid) and 0<= j+dj <len(grid[0]) and grid[i+di][j+dj] == 1:
+                    grid[i+di][j+dj] = 2
+                    r_oranges.append((i+di,j+dj,cur_time+1))
+        flag= True
+        orange_present = False
+        for i in grid:
+            for j in i:
+                if j == 1:
+                    flag = False
+                    orange_present = True
+                if j == 2:
+                    orange_present = True
+        if flag and orange_present:
+            return max_time
+        elif not flag and orange_present:
             return -1
+        else:
+            return 0
+
+
