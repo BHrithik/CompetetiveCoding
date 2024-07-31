@@ -8,4 +8,5 @@ class Solution:
                 return cache[n]
             cache[n] =  min(dfs(n+1)+cost[n],dfs(n+2)+cost[n])
             return cache[n]
-        return min(dfs(0),dfs(1))
+        dfs(0)
+        return min(cache[0],cache[1])
