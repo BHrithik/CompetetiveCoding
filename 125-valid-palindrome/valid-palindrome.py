@@ -1,9 +1,18 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        new_s = ""
-        for i in s:
-            if i.isalpha():
-                new_s += i.lower()
-            elif i.isdigit():
-                new_s += i
-        return new_s == new_s[::-1]
+        l=0
+        r=len(s)-1
+        while l < r:
+            if s[l].isalpha() and s[r].isalpha() and s[l].lower() == s[r].lower():
+                l += 1
+                r -= 1
+            elif s[l].isdigit() and s[r].isdigit() and s[l] == s[r]:
+                l += 1
+                r -= 1
+            elif not s[l].isdigit() and not s[l].isalpha(): ## l special character
+                l += 1
+            elif not s[r].isdigit() and not s[r].isalpha(): ## r special character
+                r -= 1
+            else:
+                return False
+        return True
