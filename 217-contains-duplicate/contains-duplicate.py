@@ -1,4 +1,17 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        numDict = Counter(nums)
-        return not all([True if numDict[i] == 1 else False for i in numDict])
+        pos_seen = 0
+        neg_seen = 0
+        for i in nums:
+            cur_mask = 1 << abs(i)
+            if i >= 0:
+                if pos_seen & cur_mask:
+                    return True
+                else:
+                    pos_seen ^= cur_mask
+            else:
+                if neg_seen & cur_mask:
+                    return True
+                else:
+                    neg_seen ^= cur_mask
+        return False
