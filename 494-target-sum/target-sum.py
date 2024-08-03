@@ -11,5 +11,6 @@ class Solution:
                 return cache[idx,rem_sum]
             cache[idx,rem_sum] = helper(idx+1,rem_sum+nums[idx])+helper(idx+1,rem_sum-nums[idx])
             return cache[idx,rem_sum]
+            # return helper(idx+1,rem_sum+nums[idx])+helper(idx+1,rem_sum-nums[idx])
         return helper(0,target)
 
