@@ -8,7 +8,6 @@ class Solution:
         for i in range(0,n):            
             for j in range(i,n):
                 matrix[i][j],matrix[j][i] = matrix[j][i], matrix[i][j]
-        print(matrix)
         for i in range(0,n):
             matrix[i].reverse()
         
