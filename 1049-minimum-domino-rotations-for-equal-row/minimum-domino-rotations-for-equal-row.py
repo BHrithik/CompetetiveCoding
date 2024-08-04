@@ -9,8 +9,7 @@ class Solution:
             bottomCounter[bottoms[i]].add(i)
             allNums.add(bottoms[i])
             allNums.add(tops[i])
-        res = float('inf')
-        for i in list(allNums):
+        for i in allNums:
             mapTop = topCounter[i]
             mapBottom = bottomCounter[i]
             if len(mapTop | mapBottom) == n:
