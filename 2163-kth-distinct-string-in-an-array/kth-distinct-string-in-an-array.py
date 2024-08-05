@@ -1,4 +1,3 @@
 class Solution:
     def kthDistinct(self, arr: List[str], k: int) -> str:
-        a=[i for i in arr if Counter(arr)[i] == 1]
-        return a[k-1] if len(a) >= k else ""
+        return [i for i in arr if Counter(arr)[i] == 1][k-1] if len([i for i in arr if Counter(arr)[i] == 1]) >= k else ""
