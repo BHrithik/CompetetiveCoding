@@ -15,7 +15,6 @@ class Solution:
                 keyPad[i] = 3
             else:
                 keyPad[i] = 4
-        print(keyPad)
         res = 0
         for i in word:
             res += keyPad[i]
