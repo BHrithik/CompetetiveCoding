@@ -2,19 +2,10 @@ class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
         i = 0
+        stackDict = {")":"(","}":"{","]":"["}
         while i < len(s):
-            if s[i] == ")":
-                if stack and stack[-1] == "(":
-                    stack.pop()
-                else:
-                    return False
-            elif s[i] == "}":
-                if stack and stack[-1] == "{":
-                    stack.pop()
-                else:
-                    return False
-            elif s[i] == "]":
-                if stack and stack[-1] == "[":
+            if s[i] in stackDict:
+                if stack and stack[-1] == stackDict[s[i]]:
                     stack.pop()
                 else:
                     return False
