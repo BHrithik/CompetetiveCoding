@@ -18,9 +18,9 @@ class Codec:
             while s[j]!="#":
                 j += 1
             num = int(s[i:j])
-            j = j+1
-            res.append(s[j:j+num])
-            i = num+j
+            j = j+1 ## first letter
+            i = num+j ## start of next letter
+            res.append(s[j:i])
         return res
 
 
