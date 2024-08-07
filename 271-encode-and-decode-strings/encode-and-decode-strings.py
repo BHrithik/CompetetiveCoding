@@ -4,7 +4,7 @@ class Codec:
         """
         s = ""
         for i in strs:
-            s += "hrithik"+i
+            s += str(len(i))+"#"+i
         print(s)
         return s
         
@@ -12,13 +12,16 @@ class Codec:
     def decode(self, s: str) -> List[str]:
         """Decodes a single string to a list of strings.
         """
-        n = s.split('hrithik')
-        return n[1:]
-        # for i in range(0,len(s)):
-        #     num = ""
-        #     if s[i] == "#":
-        #         numstart = i+1
-        #         while s[numstart].isalpha()
+        res,i = [],0
+        while i<len(s):
+            j = i
+            while s[j]!="#":
+                j += 1
+            num = int(s[i:j])
+            j = j+1
+            res.append(s[j:j+num])
+            i = num+j
+        return res
 
 
         
