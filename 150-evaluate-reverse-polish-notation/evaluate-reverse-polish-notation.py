@@ -20,6 +20,6 @@ class Solution:
                 b = int(stack.pop())
                 stack.append(a*b)
             else:
-                stack.append(tokens[i])
+                stack.append(int(tokens[i]))
             i+=1
         return int(stack[-1])
