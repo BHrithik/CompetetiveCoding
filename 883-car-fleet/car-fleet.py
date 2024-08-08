@@ -4,8 +4,7 @@ class Solution:
 
         stack = []
         for pos,speed in sorted(car_pos,reverse=True):
-            if stack and (target-stack[-1][0])/stack[-1][1] >= (target-pos)/speed:
-                continue
-            else:
-                stack.append([pos,speed])
+            stack.append((target-pos)/speed)
+            if len(stack) >=2 and stack[-2]>=stack[-1]:
+                stack.pop()
         return len(stack)
