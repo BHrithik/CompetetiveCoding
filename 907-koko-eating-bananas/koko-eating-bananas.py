@@ -7,7 +7,7 @@ class Solution:
             m = (l+r)//2
             time = 0
             for i in piles:
-                time += math.ceil(i/m)
+                time += math.ceil(i/m)         
             if time <= h:
                 res = min(m,res)
                 r = m-1
