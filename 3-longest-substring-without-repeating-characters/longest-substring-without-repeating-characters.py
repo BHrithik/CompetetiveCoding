@@ -6,7 +6,8 @@ class Solution:
         left = 0
         for right in range(0,n):
             if s[right] in char_index:
-                left = max(left, char_index[s[right]]+1)
+                if char_index[s[right]] >= left:
+                    left = char_index[s[right]]+1
             char_index[s[right]] = right
             ans = max(right-left+1,ans)
         return ans
