@@ -16,14 +16,5 @@ class Solution:
                 node.next = list2
                 node = node.next
                 list2 = list2.next
-        if list1:
-            while list1:
-                node.next = list1
-                node = node.next
-                list1 = list1.next
-        if list2:
-            while list2:
-                node.next = list2
-                node = node.next
-                list2 = list2.next
+        node.next = list1 or list2
         return ans.next
