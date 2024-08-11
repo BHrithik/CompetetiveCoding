@@ -6,20 +6,13 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        if not root: return []
-        ans = []
-        level = defaultdict(list)
-        def bfs(root,l):
-            if not root: return []
-            level[l].append(root.val)
-            l = l + 1
-            if root.left:
-                bfs(root.left,l)
-            if root.right:
-                bfs(root.right,l)
-        bfs(root,0)
-        print(level)
-        ans = []
-        for i in sorted(level.keys()):
-            ans.append(level[i][-1])
-        return ans
+        dictNew = defaultdict(list)
+        level = 0
+        def helper(root,level):
+            if not root: return
+            helper(root.left,level+1)
+            dictNew[level].append(root.val)
+            helper(root.right,level+1)
+        helper(root,0)
+        print(dictNew.values())
+        return [dictNew[i][-1] for i in sorted(dictNew.keys())]
