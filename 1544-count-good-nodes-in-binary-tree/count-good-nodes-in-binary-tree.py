@@ -6,14 +6,13 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        goodNodes = [0]
-        if root == None: return
-        def dfs(root,maxVal):
-            if root == None: return
-            if root.val >= maxVal:
-                goodNodes[0] += 1
-            maxVal = max(maxVal,root.val)
-            dfs(root.left,maxVal)
-            dfs(root.right,maxVal)
-        dfs(root,float('-inf'))
-        return goodNodes[0]
+        self.count = 0
+        def helper(root,rootVal):
+            if not root: return
+            if root.val >= rootVal:
+                print(f"Value {root.val} is greater than {rootVal}")
+                self.count += 1
+            helper(root.left,max(rootVal,root.val))
+            helper(root.right,max(rootVal,root.val))
+        helper(root,float('-inf'))
+        return self.count
