@@ -8,11 +8,10 @@ class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         res = [0]
         def helper(root,res):
-            if not root:
-                return 0
+            if not root:return 0
             left = helper(root.left,res)
             right = helper(root.right,res)
-            res[0] = max(res[0],left+right)
+            res[0] = max(res[0], left+right)
             return 1+max(left,right)
         helper(root,res)
         return res[0]
