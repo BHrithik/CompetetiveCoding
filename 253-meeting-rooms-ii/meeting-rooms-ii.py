@@ -1,12 +1,12 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        if not intervals: return 0
-        conflicts = []
-        intervals.sort()
-        for i in range(len(intervals)-1):
-            end = intervals[i][1]
-            start = intervals[i+1][0]
-            if end > start:
-                conflicts.append(intervals[i+1])
-                intervals[i+1]=intervals[i]
-        return 1 + self.minMeetingRooms(conflicts)
+        if not intervals:
+            return 0
+        rooms = []
+        intervals.sort(key= lambda x:x[0])
+        heapq.heappush(rooms,intervals[0][1])
+        for i in intervals[1:]:
+            if rooms[0] <= i[0]:
+                heapq.heappop(rooms)
+            heapq.heappush(rooms,i[1])
+        return len(rooms)
