@@ -7,8 +7,6 @@ class Solution:
             if i >= len(nums):
                 res.add(tuple(subSet.copy()))
                 return
-            # new_index = i
-            # if nums[i] in 
             subSet.append(nums[i])
             dfs(i+1)
             subSet.pop()
