@@ -3,7 +3,7 @@ class Solution:
         if not intervals:
             return 0
         rooms = []
-        intervals.sort(key= lambda x:x[0])
+        intervals.sort()
         heapq.heappush(rooms,intervals[0][1])
         for i in intervals[1:]:
             if rooms[0] <= i[0]:
