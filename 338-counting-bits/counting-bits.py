@@ -5,7 +5,7 @@ class Solution:
             res = 0
             n = i
             while n:
-                n &= n-1
-                res += 1
+                res += n%2
+                n = n>>1
             arr.append(res)
         return arr
