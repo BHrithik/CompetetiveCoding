@@ -7,7 +7,7 @@ class Solution:
             if len(subSet) == k and sum(subSet) == n:
                 res.append(subSet.copy())
                 return
-            if sum(subSet) > n or i >= len(nums):
+            if sum(subSet) > n or i >= len(nums) or len(subSet) > k:
                 return
             subSet.append(nums[i])
             dfs(i+1)
