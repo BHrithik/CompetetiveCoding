@@ -3,9 +3,8 @@ class Solution:
         arr = []
         for i in range(n+1):
             res = 0
-            n = i
-            while n:
-                res += n%2
-                n = n>>1
+            while i:
+                res += i%2
+                i = i>>1
             arr.append(res)
         return arr
