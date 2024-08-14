@@ -1,4 +1,3 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        nums.sort()
-        return nums[len(nums)//2]
+        return sorted(Counter(nums).keys(),key=lambda x: Counter(nums)[x],reverse=True)[0]
