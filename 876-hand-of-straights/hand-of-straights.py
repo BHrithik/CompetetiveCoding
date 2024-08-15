@@ -6,7 +6,7 @@ class Solution:
         handCounter = Counter(hand)
         n = len(hand)
         for i in range(n//groupSize):
-            cur = sorted(handCounter.keys())[0]
+            cur = min(handCounter.keys())
             for j in range(0,groupSize):
                 if cur+j in handCounter:
                     handCounter[cur+j] -= 1
