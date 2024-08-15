@@ -10,5 +10,3 @@ class Solution:
                 res.append(intervals[l])
             l += 1
         return res
-                
-                
