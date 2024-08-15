@@ -7,6 +7,4 @@ class Solution:
             if i > maxReach:
                 return False
             maxReach = max(maxReach,i+nums[i])
-            if maxReach >= len(nums)-1:
-                return True
-        return False
+        return True
