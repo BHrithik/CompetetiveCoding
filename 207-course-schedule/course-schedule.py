@@ -5,17 +5,22 @@ class Solution:
             if c1 not in courseDict:
                 courseDict[c1] = []
             courseDict[c1].append(c2)
-        visited = [0]*numCourses
+        visited = set()
+        cache = {}
         def isCycle(course):
-            if course not in courseDict or visited[course] == 2:
+            if course not in courseDict:
                 return False
-            if visited[course] == 1:
+            if course in visited:
                 return True
-            visited[course] = 1
+            if course in cache:
+                return cache[course]
+            visited.add(course)
             for pre in courseDict[course]:
                 if isCycle(pre):
+                    cache[course] = True
                     return True
-            visited[course] = 2
+            visited.remove(course)
+            cache[course] = False
             return False
         for course in range(numCourses):
             if isCycle(course):
