@@ -1,17 +1,9 @@
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         ROWS, COLS = len(heights), len(heights[0])
-        flowBackA = set()
-        flowBackP = set()
-        coastA = []
-        coastP = []
+        flowBackA,flowBackP = set(), set()
+        coastA, coastP = [], []
         directions = [(0,1),(1,0),(-1,0),(0,-1)]
-        for i in range(0,ROWS):
-            coastA.append((i,COLS-1))
-            coastP.append((i,0))
-        for i in range(0,COLS):
-            coastA.append((ROWS-1,i))
-            coastP.append((0,i))
         def dfs(i,j, isPacific):
             if isPacific and (i,j) in flowBackP: return
             if not isPacific and (i,j) in flowBackA:return
@@ -22,10 +14,12 @@ class Solution:
                 if ni < 0 or ni >= ROWS or nj < 0 or nj >= COLS or heights[ni][nj] < heights[i][j]:
                     continue
                 dfs(ni,nj,isPacific)
-        for i,j in coastP:
-            dfs(i, j, True)
-        for i,j in coastA:
-            dfs(i, j, False)
+        for i in range(0,ROWS):
+            dfs(i,COLS-1,False)
+            dfs(i,0,True)
+        for i in range(0,COLS):
+            dfs(ROWS-1,i,False)
+            dfs(0,i,True)
         res = []
         for i in range(ROWS):
             for j in range(COLS):
