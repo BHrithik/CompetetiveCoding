@@ -3,15 +3,14 @@ class Solution:
         stack = []
         i = 0
         stackDict = {")":"(","}":"{","]":"["}
-        while i < len(s):
-            if s[i] in stackDict:
-                if stack and stack[-1] == stackDict[s[i]]:
+        for i in s:
+            if i in stackDict:
+                if stack and stack[-1] == stackDict[i]:
                     stack.pop()
                 else:
                     return False
             else:
-                stack.append(s[i])
-            i += 1
+                stack.append(i)
         if stack:
             return False
         else:
