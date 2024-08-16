@@ -8,7 +8,7 @@ class Solution:
                     flag = True
                     break
             if not flag:
-                for i in range(3):
+                for i in range(len(target)):
                     if t[i] == target[i]:
                         good.add(i)
         return len(good) == 3
