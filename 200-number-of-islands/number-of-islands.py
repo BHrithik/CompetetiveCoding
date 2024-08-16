@@ -1,20 +1,18 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         count = 0
+        directions = [(0,1),(1,0),(-1,0),(0,-1)]
+        visited = set()
         def dfs(i,j):
-            if i not in range(len(grid)) or j not in range(len(grid[0])):
+            if i not in range(len(grid)) or j not in range(len(grid[0])) or grid[i][j] == '0' or (i,j) in visited:
                 return
-            if grid[i][j] == '0':
-                return
-            grid[i][j] = '0'
-            dfs(i+1,j) # go down
-            dfs(i-1,j) # go up
-            dfs(i,j-1) # go left
-            dfs(i,j+1) # go right
+            visited.add((i,j))
+            for di,dj in directions:
+                dfs(i+di,j+dj)
 
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if grid[i][j] == '1':
+                if grid[i][j] == '1' and (i,j) not in visited:
                     count += 1
                     dfs(i,j)
         return count
