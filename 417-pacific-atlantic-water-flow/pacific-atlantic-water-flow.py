@@ -13,14 +13,10 @@ class Solution:
             coastA.append((ROWS-1,i))
             coastP.append((0,i))
         def dfs(i,j, isPacific):
-            if isPacific and (i,j) in flowBackP:
-                return
-            if not isPacific and (i,j) in flowBackA:
-                return
-            if isPacific:
-                flowBackP.add((i,j))
-            else:
-                flowBackA.add((i,j))
+            if isPacific and (i,j) in flowBackP: return
+            if not isPacific and (i,j) in flowBackA:return
+            if isPacific: flowBackP.add((i,j))
+            else: flowBackA.add((i,j))
             for di,dj in directions:
                 ni,nj = i+di, j+dj
                 if ni < 0 or ni >= ROWS or nj < 0 or nj >= COLS or heights[ni][nj] < heights[i][j]:
@@ -30,7 +26,12 @@ class Solution:
             dfs(i, j, True)
         for i,j in coastA:
             dfs(i, j, False)
-        return list(flowBackP.intersection(flowBackA))
+        res = []
+        for i in range(ROWS):
+            for j in range(COLS):
+                if (i,j) in flowBackP and (i,j) in flowBackA:
+                    res.append([i,j])
+        return res
 
 
 
