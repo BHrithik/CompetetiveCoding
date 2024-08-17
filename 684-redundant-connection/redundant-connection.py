@@ -20,10 +20,10 @@ class Solution:
                 parent[p1] = p2
                 rank[p2] += rank[p1]
             return 0
-        res = []
+        # res = []
         for a,b in edges:
             if union(a-1,b-1) == 1:
-                res.append([a,b])
-        return res[-1]            
+                return [a,b]
+        # return res[-1]            
             
         
