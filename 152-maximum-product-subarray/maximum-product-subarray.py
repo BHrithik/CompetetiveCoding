@@ -1,17 +1,14 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        @lru_cache(None)
-        def dfs(ii, prod):
-            if ii == len(nums): return
+        res = max(nums)
+        cur_min, cur_max = 1, 1
 
-            self.mx = max(self.mx,
-                prod * nums[ii], # case for continuing the subarray
-                nums[ii], # case for starting a new subarry from ii
-                prod # case for ending the subarry
-            )
-            dfs(ii + 1, prod * nums[ii])
-            dfs(ii + 1, nums[ii])
-
-        self.mx = nums[0]
-        dfs(1, nums[0])
-        return self.mx
+        for i in nums:
+            if i == 0:
+                cur_min, cur_max = 1, 1
+                continue
+            temp = cur_max
+            cur_max = max(i*cur_max,i*cur_min,i)
+            cur_min = min(i*temp,i*cur_min,i)
+            res = max(cur_max,res)
+        return res
