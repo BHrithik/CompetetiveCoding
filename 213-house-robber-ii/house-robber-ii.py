@@ -3,15 +3,21 @@ class Solution:
         if len(nums) <= 3:
             return max(nums)
         def helper(nums):
-            cache = {}
-            def rob(i):
-                if i > len(nums)-1:
-                    return 0
-                if i in cache:
-                    return cache[i]
-                cache[i] = nums[i]+max(rob(i+2),rob(i+3))
-                return cache[i]
-            return max(rob(0),rob(1))
+            rob1, rob2 = 0, 0
+            for i in range(0,len(nums)):
+                temp = rob2
+                rob2 = max(rob1+nums[i],rob2)
+                rob1 = temp
+            return rob2
+            # cache = {}
+            # def rob(i):
+            #     if i > len(nums)-1:
+            #         return 0
+            #     if i in cache:
+            #         return cache[i]
+            #     cache[i] = nums[i]+max(rob(i+2),rob(i+3))
+            #     return cache[i]
+            # return max(rob(0),rob(1))
         return max(helper(nums[1:]),helper(nums[:-1]))
 
 
