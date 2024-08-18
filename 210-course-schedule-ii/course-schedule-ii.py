@@ -1,11 +1,8 @@
 class Solution:
     def findOrder(self, numCourses: int, preq: List[List[int]]) -> List[int]:
         courseDict = {i:[] for i in range(numCourses)}
-        courses = range(numCourses)
         for c1,c2 in preq:
             courseDict[c1].append(c2)
-        # courses = list(courses)
-        # courses.sort(key=lambda x: len(courseDict.get(x,[])))
         visited = set()
         cycle = set()
         output = []
