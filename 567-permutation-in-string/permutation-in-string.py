@@ -1,19 +1,32 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        sCounter = Counter(s1)
-        window = len(s1)
-        s2Counter = Counter(s2[:window])
-        if s2Counter == sCounter:
-            return True
-        l = 0
-        for r in range(window,len(s2)):
-            s2Counter[s2[r]] = s2Counter.get(s2[r],0)+1
-            s2Counter[s2[l]] -= 1
-            if s2Counter[s2[l]] == 0:
-                del s2Counter[s2[l]]
-            if s2Counter == sCounter:
+
+        def generate_hash(string):
+            hash_value = 0 
+            for ch in string:
+                hash_value += ((ord(ch) - 96) ** 4)
+            return hash_value 
+        
+        def remove_left(ch, hash_value):
+            return hash_value - ((ord(ch) - 96) ** 4) 
+
+        def add_right(ch, hash_value):
+            return hash_value + ((ord(ch) - 96) ** 4) 
+        
+        left, right = 0, len(s1) - 1
+        hashed = generate_hash(s2[: right])
+        original = generate_hash(s1)
+        print(original)
+        while right < len(s2):
+            hashed = add_right(s2[right], hashed)
+            right += 1
+            if hashed == original:
                 return True
-            l+=1
+            hashed = remove_left(s2[left], hashed)
+            left += 1
         return False
 
-        
+
+
+
+
