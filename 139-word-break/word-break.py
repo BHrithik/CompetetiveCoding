@@ -14,5 +14,5 @@ class Solution:
                     res = res or dfs(cur_s+i,rem_s[len(i):])
             cache[rem_s] = res
             return cache[rem_s]
-        wordDict.sort(key=lambda x: len(s),reverse = True)
+        # wordDict.sort(key=lambda x: len(s),reverse = True)
         return dfs("",s)
