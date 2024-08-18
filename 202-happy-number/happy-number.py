@@ -9,8 +9,9 @@ class Solution:
                 n = n//10
             return cur_sum
         seen = set()
-        while n != 1 and n not in seen:
+        while n not in seen:
             seen.add(n)
             n = getSum(n)
-        return n==1
-            
+            if n == 1:
+                return True
+        return False
