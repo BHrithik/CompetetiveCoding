@@ -2,7 +2,7 @@ class Solution:
     def maxArea(self, height: List[int]) -> int:
         l = 0
         r = len(height)-1
-        maxArea = float('-inf')
+        maxArea = 0
         while l < r:
             area = (r-l) * min(height[l],height[r])
             maxArea = max(area,maxArea)
