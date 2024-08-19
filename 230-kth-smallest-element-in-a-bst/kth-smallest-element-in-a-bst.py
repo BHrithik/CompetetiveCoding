@@ -8,7 +8,8 @@ class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         arr = []
         def traversal(root):
-            if not root:
+            if not root:return
+            if len(arr) == k:
                 return
             traversal(root.left)
             arr.append(root.val)
