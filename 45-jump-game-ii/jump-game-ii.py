@@ -2,15 +2,14 @@ from typing import List
 
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        if len(nums)==1:
-            return 0
-        l, r = 0, 0
-        res = 0
-        while r < len(nums)-1:
-            farthest = 0
-            for i in range(l,r+1):
-                farthest = max(farthest,nums[i]+i)
-            l = r+1
-            r = farthest
-            res += 1
-        return res
+        max_reach = 0
+        cur_end = 0
+        count = 0
+        for i in range(len(nums)-1):
+            max_reach = max(max_reach,nums[i]+i)
+            if i == cur_end:
+                count += 1 # we need to jump
+                cur_end = max_reach
+                if cur_end >= len(nums)-1:
+                    break
+        return count
