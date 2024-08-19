@@ -7,11 +7,12 @@ class Solution:
         desired = "A"*n
         cache = {}
         def dfs(x, clipBoard, count):
-            if x == n:
+            if x == 0:
                 return count
-            if x > n:
+            if x < 0:
                 return float('inf')
             # n is even and n > 2
             # 2 options every time copy existing or paste from clipboard
-            return min(dfs(x+clipBoard,clipBoard,count+1), dfs(x+x,x,count+2))
-        return dfs(1,1,1)
+            len_cur = n-x
+            return min( dfs(x-clipBoard, clipBoard, count+1), dfs(n-(2*len_cur), len_cur, count+2))
+        return dfs(n-1,1,1)
