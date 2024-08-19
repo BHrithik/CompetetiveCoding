@@ -6,15 +6,15 @@ class Solution:
         maxLeft = height[l]
         maxRight = height[r]
         water = 0
-        while l < r:
+        while l <= r:
             if maxLeft < maxRight:
-                l += 1
                 maxLeft = max(maxLeft,height[l])
                 water += max(0,maxLeft-height[l])
+                l += 1
             else:
-                r -= 1
                 maxRight = max(maxRight,height[r])
                 water += max(0,maxRight-height[r])
+                r -= 1
         return water
                 
         n = len(height)
@@ -34,28 +34,30 @@ class Solution:
         # return water
 
                 
-        # matrix = [[0]*n for _ in range(max(height))]
+        matrix = [[0]*n for _ in range(max(height))]
         # print(matrix)      
-        # for i in range(0,len(height)):
-        #     for j in range(0,height[i]):
-        #         matrix[j][i] = 1
-        # matrix = matrix
-        # water = 0
-        # for i in range(max(height)):
-        #     matrix = [1 if wall > i else 0 for wall in height]
-        #     if sum(matrix) == 1:
-        #         continue
-        #     leftFound = False
-        #     for j in range(n):
-        #         if leftFound and matrix[j] == 0 and sum(matrix[j:]) > 0:
-        #             water += 1
-        #             # matrix[j] = "W"
-        #         if not leftFound and matrix[j] == 1:
-        #             leftFound = True
-        #     # print(matrix) 
-        # # print(matrix[::-1])
-        # return water
+        for i in range(0,len(height)):
+            for j in range(0,height[i]):
+                matrix[j][i] = 1
+        matrix = matrix
+        water = 0
+        for i in range(max(height)):
+            matrix = [1 if wall > i else 0 for wall in height]
+            # if sum(matrix) == 1:
+            #     continue
+            leftFound = False
+            for j in range(n):
+                if leftFound and matrix[j] == 0 and sum(matrix[j:]) > 0:
+                    water += 1
+                    # matrix[j] = "W"
+                if not leftFound and matrix[j] == 1:
+                    leftFound = True
+            print(matrix) 
+        # print(matrix[::-1])
+        return water
 
-# # [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
-# # [0, 0, 0, 1, 2, 2, 2, 1, 1, 2, 1, 0]
-# # [0, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1]
+# [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+# [0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0]
+# [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1]
+
+# 
