@@ -1,11 +1,11 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         candidates.sort()
-        res = set()
+        res = []
         subSet = []
         def bcktrk(i,cur_sum):
             if cur_sum == target:
-                res.add(tuple(subSet.copy()))
+                res.append(subSet.copy())
                 return
             if cur_sum > target or i>= len(candidates):
                 return
