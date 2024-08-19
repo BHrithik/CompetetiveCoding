@@ -3,10 +3,7 @@ class Solution:
         l=0
         r=len(s)-1
         while l < r:
-            if s[l].isalpha() and s[r].isalpha() and s[l].lower() == s[r].lower():
-                l += 1
-                r -= 1
-            elif s[l].isdigit() and s[r].isdigit() and s[l] == s[r]:
+            if s[l].isalnum() and s[r].isalnum() and s[l].lower() == s[r].lower():
                 l += 1
                 r -= 1
             elif not s[l].isdigit() and not s[l].isalpha(): ## l special character
