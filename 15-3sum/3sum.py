@@ -8,8 +8,8 @@ class Solution:
             r = len(nums)-1
             while l < r:
                 cur_sum = nums[l]+nums[r]
-                if cur_sum == target and l!=i and r!=i:
-                    res.add(tuple(sorted([nums[l],nums[i],nums[r]])))
+                if cur_sum == target:
+                    res.add(tuple([nums[i],nums[l],nums[r]]))
                     l += 1
                     r -= 1
                 elif cur_sum < target:
