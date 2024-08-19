@@ -9,9 +9,9 @@ class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
         diameter = 0
         def depth(root):
+            nonlocal diameter
             if not root:
                 return 0
-            nonlocal diameter
             left = depth(root.left)
             right = depth(root.right)
             diameter = max(diameter,left+right)
