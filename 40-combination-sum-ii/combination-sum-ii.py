@@ -16,4 +16,4 @@ class Solution:
                 i = i+1
             bcktrk(i+1, cur_sum)
         bcktrk(0,0)
-        return res
+        return list(res)
