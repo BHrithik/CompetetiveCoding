@@ -11,7 +11,4 @@ class Solution:
                     return False
             else:
                 stack.append(i)
-        if stack:
-            return False
-        else:
-            return True
+        return stack == []
