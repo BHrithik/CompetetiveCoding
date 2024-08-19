@@ -2,7 +2,7 @@ class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
         i = 0
-        while i < len(tokens):
+        for i in range(len(tokens)):
             if tokens[i] == "+":
                 a = int(stack.pop())
                 b = int(stack.pop())
@@ -21,5 +21,4 @@ class Solution:
                 stack.append(a*b)
             else:
                 stack.append(int(tokens[i]))
-            i+=1
         return int(stack[-1])
