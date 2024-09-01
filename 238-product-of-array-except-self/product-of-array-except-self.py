@@ -3,9 +3,9 @@ class Solution:
         n = len(nums)
         prefixProduct = 1
         postfixProduct = 1
-        res = [0]* n
+        res = []
         for i in range(n):
-            res[i] = prefixProduct
+            res.append(prefixProduct)
             prefixProduct *= nums[i]
         for i in range(n-1,-1,-1):
             res[i] *= postfixProduct
