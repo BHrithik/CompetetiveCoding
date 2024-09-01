@@ -3,7 +3,7 @@ class Solution:
         numDict = {}
         for i in range(len(nums)):
             if target-nums[i] in numDict:
-                return [i,numDict[target-nums[i]]]
+                return [i, numDict[target-nums[i]]]
             numDict[nums[i]] = i
         # new_nums = [(value,index) for index,value in enumerate(nums)]
         # new_nums.sort()
