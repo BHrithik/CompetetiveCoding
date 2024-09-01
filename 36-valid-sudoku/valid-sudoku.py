@@ -8,7 +8,7 @@ class Solution:
             for j in range(n):
                 if board[i][j] == ".":
                     continue
-                box_n = (i//3*3,j//3*3)
+                box_n = ((i//3)*3,(j//3)*3)
                 if board[i][j] in cols[j] or board[i][j] in rows[i] or board[i][j] in boxes[box_n]:
                     return False
                 cols[j].add(board[i][j])
