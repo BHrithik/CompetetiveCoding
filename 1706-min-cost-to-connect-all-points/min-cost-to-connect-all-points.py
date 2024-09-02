@@ -4,11 +4,10 @@ class Solution:
         adjList = {i:[] for i in range(n)}
         for i in range(n):
             x1, y1 = points[i]
-            for j in range(i+1,n):
+            for j in range(n):
                 x2, y2 = points[j]
                 dist = abs(x2-x1) + abs(y2-y1)
                 adjList[i].append((dist,j))
-                adjList[j].append((dist,i))
         
         # Prim's ( Or as I like to call it Prem's)
         res = 0
