@@ -21,6 +21,5 @@ class Solution:
             res += cost
             visited.add(i)
             for neiDist, nei in adjList[i]:
-                if nei not in visited:
-                    heapq.heappush(mH, (neiDist, nei))
+                heapq.heappush(mH, (neiDist, nei))
         return res
