@@ -4,6 +4,8 @@ class Solution:
         res = set()
         nums.sort()
         for i in range(n):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
             target = -nums[i]
             l = i+1
             r = n-1
