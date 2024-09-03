@@ -8,13 +8,12 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        # Find middle
         slow = head
         fast = head.next
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        # Reverse from the middle
+        
         mid = slow.next
         slow.next = None
         prev = None
@@ -23,7 +22,7 @@ class Solution:
             mid.next = prev
             prev = mid
             mid = temp
-        # Now prev points to the start of the reversed list
+        
         first, second = head, prev
         while second:
             temp1, temp2 = first.next, second.next
