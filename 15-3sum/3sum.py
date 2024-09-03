@@ -14,7 +14,8 @@ class Solution:
                     if i != l and i != r:
                         res.add(tuple([nums[i],nums[l],nums[r]]))
                     l += 1
-                    r -= 1
+                    while nums[l] == nums[l-1] and l<r:
+                        l += 1
                 elif nums[l]+nums[r] > target:
                     r -= 1
                 else:
