@@ -7,7 +7,7 @@ class MedianFinder:
     def addNum(self, num: int) -> None:
         heapq.heappush(self.maxHeap,-num) # initially add the number to maxHeap
         heapq.heappush(self.minHeap,-(heapq.heappop(self.maxHeap))) # remove the largest number from maxheap and add it to min heap
-        if len(self.minHeap) > len(self.maxHeap)+1: # if length difference is more than 1 remove element from min heap and add it to maxHeap
+        if len(self.minHeap) != len(self.maxHeap)+1: # if length difference is more than 1 remove element from min heap and add it to maxHeap
             heapq.heappush(self.maxHeap,-heapq.heappop(self.minHeap))
 
     def findMedian(self) -> float:
