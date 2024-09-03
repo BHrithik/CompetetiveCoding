@@ -5,7 +5,6 @@ class Solution:
         #[[2,6]
         count = 0
         points.sort()
-        print(points)
         res = [points[0]]
         prevEnd = res[0][1]
         for i in range(1,len(points)):
@@ -15,5 +14,4 @@ class Solution:
                 res[-1][1] = min(prevEnd,end)
             else:
                 res.append([start,end])
-        print(res)
         return len(res)
