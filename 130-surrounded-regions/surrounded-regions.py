@@ -23,7 +23,6 @@ class Solution:
             for j in range(COLS):
                 if board[i][j] == "O" and (i,j) not in freeSpace:
                     board[i][j] = "X"
-        return board
                 
 
 
