@@ -13,9 +13,11 @@ class Solution:
             for nei in graphDict[root]:
                 dfs(nei)
         res = 0
+        # res_compos = [set()]
         for i in range(n):
             if i not in visited:
                 dfs(i)
-                print(visited)
+                # res_compos.append(visited-res_compos[-1])
                 res += 1
+        # print(res_compos)
         return res
