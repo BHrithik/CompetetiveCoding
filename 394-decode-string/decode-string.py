@@ -2,7 +2,7 @@ class Solution:
     def decodeString(self, s: str) -> str:
         stack = []
         for i in s:
-            if i== ']':
+            if i == ']':
                 cur_s = ""
                 while stack:
                     ch = stack.pop()
