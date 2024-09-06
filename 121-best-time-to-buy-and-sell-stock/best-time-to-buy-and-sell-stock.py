@@ -4,7 +4,7 @@ class Solution:
         r = len(prices)-1
         cur_price = prices[0]
         maxProfit = 0
-        for i in prices[1:]:
-            maxProfit = max(maxProfit,i-cur_price)
-            cur_price = min(cur_price,i)
+        for i in prices:
+            maxProfit = max(maxProfit, i - cur_price)
+            cur_price = min(cur_price, i)
         return maxProfit
