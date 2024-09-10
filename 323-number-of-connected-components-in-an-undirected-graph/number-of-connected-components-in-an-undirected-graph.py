@@ -8,7 +8,7 @@ class Solution:
         visited = set()
         def dfs(root):
             if root in visited or not graphDict[root]:
-                return True
+                return
             visited.add(root)
             for nei in graphDict[root]:
                 dfs(nei)
