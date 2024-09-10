@@ -6,7 +6,7 @@ class Solution:
                 courseDict[c1] = []
             courseDict[c1].append(c2)
         cache = {}
-        def isCycle(course,visited):
+        def isCycle(course, visited):
             if course not in courseDict:
                 return False
             if course in visited:
@@ -15,12 +15,13 @@ class Solution:
                 return cache[course]
             visited.add(course)
             for pre in courseDict[course]:
-                if isCycle(pre,visited):
+                if isCycle(pre, visited):
                     cache[course] = True
                     return True
             visited.remove(course)
             cache[course] = False
             return False
+
         for course in range(numCourses):
             if isCycle(course,set()):
                 return False
