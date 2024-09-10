@@ -11,23 +11,28 @@
 #         self.right = right
 class Solution:
     def isSubPath(self, current_node: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        d = deque([root])
+        potential_starts = []
+        def traversal(root):
+            if not root:
+                return
+            if root.val == current_node.val:
+                potential_starts.append(root)
+            traversal(root.left)
+            traversal(root.right)
 
         def dfs(node, root):
-            if not node:  # Reached the end of the list, successful match
+            if not node: # Reached the end of list
                 return True
-            if not root or root.val != node.val:  # Mismatch between current tree node and list node or Reached the end of the tree, but still nodes in the list
+            if not root and node: # Reached the end of tree and list is still left
                 return False
-            # Try both left and right children
+            if root.val != node.val: # Current root val is not equal to the list val
+                return False
             return dfs(node.next, root.left) or dfs(node.next, root.right)
-
-        while d:
-            for i in range(len(d)):
-                cur_root = d.popleft()
-                if cur_root.val == current_node.val and dfs(current_node, cur_root):
-                    return True
-                if cur_root.left:
-                    d.append(cur_root.left)
-                if cur_root.right:
-                    d.append(cur_root.right)
+    
+        traversal(root)
+        for pt_start in potential_starts:
+            if dfs(current_node, pt_start):
+                return True
         return False
+
+        
