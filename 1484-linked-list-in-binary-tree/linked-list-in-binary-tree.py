@@ -31,5 +31,3 @@ class Solution:
                 if cur_root.right:
                     d.append(cur_root.right)
         return False
-
-        
