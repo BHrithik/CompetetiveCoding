@@ -1,5 +1,4 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freqDict = Counter(nums)
-        # Arr = 
-        return sorted(freqDict.keys(), key= lambda x: -freqDict[x])[:k]
+        num_dict = Counter(nums)
+        return sorted(num_dict.keys(),key=lambda x: num_dict[x],reverse=True)[:k]
