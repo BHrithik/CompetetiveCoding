@@ -9,27 +9,26 @@ class Codec:
 
     def serialize(self, root):
         preOrder = []
-        def dfs(root):
+        def helper(root):
             if not root:
-                preOrder.append('N')
+                preOrder.append("None")
                 return
             preOrder.append(str(root.val))
-            dfs(root.left)
-            dfs(root.right)
-        dfs(root)
-        return ','.join(preOrder)
+            helper(root.left)
+            helper(root.right)
+        helper(root)
+        return ",".join(preOrder)
 
-            
     def deserialize(self, data):
-        values = data.split(',')
+        vals = data.split(',')
         self.i = 0
-        def dfs():
-            if values[self.i] == "N":
+        def helper():
+            if vals[self.i] == "None":
                 self.i += 1
                 return None
-            node = TreeNode(int(values[self.i]))
+            new_node = TreeNode(int(vals[self.i]))
             self.i += 1
-            node.left = dfs()
-            node.right = dfs()
-            return node
-        return dfs()
+            new_node.left  = helper()
+            new_node.right = helper()
+            return new_node
+        return helper()
