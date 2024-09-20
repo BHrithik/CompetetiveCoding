@@ -5,8 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        cur_root = root
+    def kthSmallest(self, cur_root: Optional[TreeNode], k: int) -> int:
         stack = []
         n = 0
         while cur_root or stack:
