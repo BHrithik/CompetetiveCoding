@@ -3,18 +3,19 @@ class Solution:
         """
         Do not return anything, modify rooms in-place instead.
         """
-        MAX = (2**31) - 1
-        directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
-        q = deque()
+        INF = (2**31)-1
+        gates = deque([])
+        directions = [(1,0),(0,1),(-1,0),(0,-1)]
         for i in range(len(rooms)):
-            for j in range(len(rooms[0])):
+            for j in range(len(rooms[i])):
                 if rooms[i][j] == 0:
-                    q.append((i,j))
-        while q:
-            r,c = q.popleft()
-            for di, dj in directions:
-                nr,nc = r+di, c+dj
-                if nr not in range(len(rooms)) or nc not in range(len(rooms[0])) or rooms[nr][nc] != MAX:
-                    continue
-                rooms[nr][nc] = rooms[r][c]+1
-                q.append((nr,nc))
+                    gates.append((i,j))
+        while gates:
+            for i in range(len(gates)):
+                i,j = gates.popleft()
+                for di,dj in directions:
+                    if 0 <= i+di < len(rooms) and 0 <= j+dj < len(rooms[i+di]) and rooms[i+di][j+dj] == INF:
+                        rooms[i+di][j+dj] = rooms[i][j]+1
+                        gates.append((i+di,j+dj))
+        print(rooms)
+        return rooms
