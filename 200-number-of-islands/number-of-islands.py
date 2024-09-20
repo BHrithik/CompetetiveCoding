@@ -4,9 +4,9 @@ class Solution:
         directions = [(1,0),(0,1),(-1,0),(0,-1)]
         visited = set()
         def helper(i,j):
-            if not 0 <= i < len(grid) or not 0 <= j < len(grid[i]) or grid[i][j] == "0" or (i,j) in visited:
+            if not 0 <= i < len(grid) or not 0 <= j < len(grid[i]) or grid[i][j] == "0":
                 return
-            visited.add((i,j))
+            grid[i][j] = "0"
             for di, dj in directions:
                 helper(i+di,j+dj)
 
