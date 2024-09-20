@@ -15,10 +15,9 @@ class Solution:
                 return None
             if root in oldToNew:
                 return oldToNew[root]
-            new_node = Node(root.val)
-            oldToNew[root] = new_node
+            oldToNew[root] = Node(root.val)
             for nei in root.neighbors:
                 oldToNew[root].neighbors.append(helper(nei))
-            return new_node
+            return oldToNew[root]
         return helper(node)
 
