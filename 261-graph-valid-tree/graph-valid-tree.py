@@ -6,17 +6,19 @@ class Solution:
         for a,b in edges:
             graph[a].append(b)
             graph[b].append(a)
-        
         visited = set()
-        def dfs(node,prev):
-            if node in visited:
-                return False
-            visited.add(node)
-            for nei in graph[node]:
-                if nei == prev:
-                    continue
-                if not dfs(nei,node):
-                    return False
-            return True
 
-        return dfs(0,-1) and len(visited) == n
+        def helper(root, parent):
+            if root == parent:
+                return False
+            if root in visited:
+                return False
+            visited.add(root)
+            for nei in graph[root]:
+                helper(nei,root)
+            return True
+        
+        if not helper(0,-1):
+            return False
+
+        return len(visited) == n
