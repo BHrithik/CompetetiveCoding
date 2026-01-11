@@ -1,57 +1,17 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        n = len(nums)
         res = set()
         nums.sort()
-        for i in range(n):
-            if i > 0 and nums[i] == nums[i-1]:
-                continue
+        for i in range(0,len(nums)):
             target = -nums[i]
-            l = i+1
-            r = n-1
-            while l < r:
-                if nums[l] + nums[r] == target:
-                    if i != l and i != r:
-                        res.add(tuple([nums[i],nums[l],nums[r]]))
-                    l += 1
-                    while nums[l] == nums[l-1] and l<r:
-                        l += 1
-                elif nums[l]+nums[r] > target:
-                    r -= 1
+            left = i+1
+            right = len(nums)-1
+            while left < right:
+                cur_sum = nums[left]+nums[right]
+                if cur_sum == target and (nums[i],nums[left],nums[right]) not in res:
+                    res.add((nums[i],nums[left],nums[right]))
+                elif cur_sum < target:
+                    left += 1
                 else:
-                    l += 1
+                    right -= 1
         return list(res)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # res = set()
-        # nums.sort()
-        # for i in range(0,len(nums)):
-        #     target = -nums[i]
-        #     l = i+1
-        #     r = len(nums)-1
-        #     while l < r:
-        #         cur_sum = nums[l]+nums[r]
-        #         if cur_sum == target:
-        #             res.add(tuple([nums[i],nums[l],nums[r]]))
-        #             l += 1
-        #             r -= 1
-        #         elif cur_sum < target:
-        #             l += 1
-        #         else:
-        #             r -= 1
-        # return list(res)
