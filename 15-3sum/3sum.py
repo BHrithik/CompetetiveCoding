@@ -10,6 +10,8 @@ class Solution:
                 cur_sum = nums[left]+nums[right]
                 if cur_sum == target and (nums[i],nums[left],nums[right]) not in res:
                     res.add((nums[i],nums[left],nums[right]))
+                    left += 1
+                    right -= 1
                 elif cur_sum < target:
                     left += 1
                 else:
