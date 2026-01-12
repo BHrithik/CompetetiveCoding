@@ -1,16 +1,20 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        l = 1
-        r = max(piles)
+        def getTimeToEatBananas(speed):
+            time = 0
+            for pile in piles:
+                time += math.ceil(pile/speed)
+            return time
+        l, r = 1, max(piles)
         res = r
         while l <= r:
-            m = (l+r)//2
-            time = 0
-            for i in piles:
-                time += math.ceil(i/m)         
-            if time <= h:
-                res = min(m,res)
-                r = m-1
+            mid = (l + r) // 2
+            t = getTimeToEatBananas(mid)
+
+            if t <= h:
+                res = mid
+                r = mid - 1   # try smaller speed
             else:
-                l = m+1
+                l = mid + 1   # need bigger speed
+
         return res
