@@ -1,27 +1,38 @@
 class TimeMap:
-
-    def __init__(self):
-        self.dict = {}
-
-    def set(self, key: str, value: str, timestamp: int) -> None:
-        if key not in self.dict:
-            self.dict[key] = []
-        self.dict[key].append([value,timestamp])
-
-    def get(self, key: str, timestamp: int) -> str:
-        res = ""
-        values = self.dict.get(key,[])
+    def find_last(self, values, time):
         l = 0
         r = len(values)-1
-        while l<=r:
+        # values = sorted(values, key= lambda x: x[0])
+        latest_time = values[0][0]
+        latest_value = ""
+        while l <= r:
             m = (l+r)//2
-            if values[m][1] <= timestamp:
-                res = values[m][0]
-                l = m+1
-            else:
+            if values[m][0] == time:
+                return values[m][1]
+            if time < values[m][0]:
                 r = m-1
-        return res
+            elif time > values[m][0]:
+                latest_time = values[m][0]
+                latest_value = values[m][1]
+                l = m+1
+        return latest_value
 
+
+    def __init__(self):
+        self.my_dict = {}        
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key in self.my_dict:
+            self.my_dict[key].append((timestamp,value))
+        else:
+            self.my_dict[key] = [(timestamp,value)]
+
+    def get(self, key: str, timestamp: int) -> str:
+        if key in self.my_dict:
+            values = self.my_dict[key]
+            return self.find_last(values,timestamp)
+        else:
+            return ""
 
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
