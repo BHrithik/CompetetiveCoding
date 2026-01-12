@@ -1,20 +1,12 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         l, r = 0, len(nums) - 1
-        res = nums[0]
-        
-        while l <= r:
-            # If the array is already sorted
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
-            
+        while l < r:
             m = (l + r) // 2
-            res = min(res, nums[m])
-            
-            if nums[m] >= nums[l]:
-                l = m + 1  # Move to the unsorted right part
+            # if mid is greater than right, min is to the right of mid
+            if nums[m] > nums[r]:
+                l = m + 1
             else:
-                r = m - 1  # Move to the unsorted left part
-        
-        return res
+                # min is at mid or to the left of mid
+                r = m
+        return nums[l]
