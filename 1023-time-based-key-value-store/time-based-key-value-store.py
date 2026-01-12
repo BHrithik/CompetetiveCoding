@@ -2,7 +2,6 @@ class TimeMap:
     def find_last(self, values, time):
         l = 0
         r = len(values)-1
-        # values = sorted(values, key= lambda x: x[0])
         latest_time = values[0][0]
         latest_value = ""
         while l <= r:
