@@ -6,15 +6,12 @@
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        treeDict = defaultdict(list)
-        level = 0 # 0 is root
-        def helper(root,level):
-            if not root: return
-            helper(root.left,level+1)
-            treeDict[level].append(root.val)
-            helper(root.right,level+1)
-        helper(root,level)
-        res = []
-        for key in sorted(treeDict.keys()):
-            res.append(treeDict[key])
-        return res
+        self.tree_dict= defaultdict(list)
+        def dfs(root, level):
+            if not root:
+                return
+            self.tree_dict[level].append(root.val)
+            dfs(root.left,level+1)
+            dfs(root.right,level+1)
+        dfs(root,0)
+        return list(self.tree_dict.values())
