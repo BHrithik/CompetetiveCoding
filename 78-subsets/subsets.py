@@ -1,14 +1,16 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        n = []
-        subSet = []
-        def dfs(i):
+        sets = []
+        cur_set = []
+        def helper(i):
             if i >= len(nums):
-                n.append(subSet.copy())
+                sets.append(cur_set.copy())
                 return
-            subSet.append(nums[i])
-            dfs(i+1)
-            subSet.pop()
-            dfs(i+1)
-        dfs(0)
-        return n
+            #Decision to add the current element
+            cur_set.append(nums[i])
+            helper(i+1)
+            cur_set.pop()
+            helper(i+1)
+        helper(0)
+        return sets
+            
