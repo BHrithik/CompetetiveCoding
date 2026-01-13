@@ -7,11 +7,12 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         self.count = 0
-        def helper(root,rootVal):
-            if not root: return
-            if root.val >= rootVal:
+        def dfs(root, prevValue):
+            if not root:
+                return
+            if root.val >= prevValue:
                 self.count += 1
-            helper(root.left,max(rootVal,root.val))
-            helper(root.right,max(rootVal,root.val))
-        helper(root,float('-inf'))
+            dfs(root.left,max(root.val,prevValue))
+            dfs(root.right,max(root.val,prevValue))
+        dfs(root,float('-inf'))
         return self.count
