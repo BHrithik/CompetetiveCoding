@@ -9,9 +9,9 @@ class Solution:
         dummy = head
         seen_nodes = set()
         while dummy:
-            if dummy.next not in seen_nodes:
-                seen_nodes.add(dummy.next)
-                dummy = dummy.next
+            if dummy not in seen_nodes:
+                seen_nodes.add(dummy)
             else:
                 return True
+            dummy = dummy.next
         return False
