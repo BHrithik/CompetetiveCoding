@@ -28,8 +28,9 @@ class Solution:
             for i in range(qlen):
                 node = q.popleft()
                 if node:
-                    last_node_level = node.val
+                    last_node_level = node
                     q.append(node.left)
                     q.append(node.right)
-            res.append(last_node_level)
-        return res[:-1]
+            if last_node_level:
+                res.append(last_node_level.val)
+        return res
