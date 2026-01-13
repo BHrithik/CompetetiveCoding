@@ -7,12 +7,12 @@
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         self.res = True
-        def helper(root):
-            if not root: return 0
-            left = helper(root.left)
-            right = helper(root.right)
-            if abs(left-right) >= 2:
-                self.res = False
-            return 1+max(left,right)
-        helper(root)
+        def dfs(root):
+            if not root:
+                return 0
+            depth_left = dfs(root.left)
+            depth_right = dfs(root.right)
+            self.res = self.res and (abs(depth_left - depth_right) < 2)
+            return 1 + max(depth_left, depth_right)
+        dfs(root)
         return self.res
