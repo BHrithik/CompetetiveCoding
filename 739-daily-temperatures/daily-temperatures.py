@@ -3,8 +3,8 @@ class Solution:
         ans = [0] * len(temps)
         stack = []
         for i,temp in enumerate(temps):
-            while stack and stack[-1][1] < temp:
-                pos, _ = stack.pop()
+            while stack and temps[stack[-1]] < temp:
+                pos = stack.pop()
                 ans[pos] = i - pos
-            stack.append([i, temp])
+            stack.append(i)
         return ans
