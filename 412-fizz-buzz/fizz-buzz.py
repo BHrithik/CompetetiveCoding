@@ -1,13 +1,16 @@
+from typing import List
+
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:
-        res = []
+        result = []
         for i in range(1,n+1):
-            if i % 3 == 0 and i % 5 == 0:
-                res.append("FizzBuzz")
-            elif i % 5 == 0:
-                res.append("Buzz")
-            elif i % 3 == 0:
-                res.append("Fizz")
+            cur_res = ""
+            if i % 3 == 0:
+                cur_res += "Fizz"
+            if i % 5 == 0:
+                cur_res += "Buzz"
+            if not cur_res:
+                result.append(str(i))
             else:
-                res.append(str(i))
-        return res
+                result.append(cur_res)
+        return result
