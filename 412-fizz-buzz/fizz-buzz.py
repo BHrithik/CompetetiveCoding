@@ -9,8 +9,5 @@ class Solution:
                 cur_res += "Fizz"
             if i % 5 == 0:
                 cur_res += "Buzz"
-            if not cur_res:
-                result.append(str(i))
-            else:
-                result.append(cur_res)
+            result.append(cur_res if cur_res else str(i))
         return result
