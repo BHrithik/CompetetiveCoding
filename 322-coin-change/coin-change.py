@@ -1,19 +1,17 @@
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        coins.sort(reverse=True)
-        fin_res = float('inf')
+    def coinChange(self, coins, amount):
         memo = {}
-        def helper(rem_amt):
-            if rem_amt > amount:
-                return float('inf')
-            if rem_amt == amount:
+        def helper(rem):
+            if rem == 0:
                 return 0
-            if rem_amt in memo:
-                return memo[rem_amt]
+            if rem < 0:
+                return float('inf')
+            if rem in memo:
+                return memo[rem]
             res = float('inf')
             for coin in coins:
-                res = min(res, 1+helper(rem_amt+coin))
-            memo[rem_amt] = res
+                res = min(res, 1 + helper(rem - coin))
+            memo[rem] = res
             return res
-        fin_res = helper(0)
-        return fin_res if fin_res != float('inf') else -1
+        ans = helper(amount)
+        return ans if ans != float('inf') else -1
