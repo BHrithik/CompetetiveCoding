@@ -6,7 +6,7 @@ class Solution:
                 return 0
             if i in memo:
                 return memo[i]
-            rob_current = nums[i] + helper(i+2)
+            rob_current = nums[i]+helper(i+2)
             skip_current = helper(i+1)
             memo[i] = max(rob_current, skip_current)
             return memo[i]
