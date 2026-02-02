@@ -42,7 +42,7 @@ class Twitter:
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         if followerId in self.follow_map:
-            self.follow_map[followerId].remove(followeeId)
+            self.follow_map[followerId].discard(followeeId)
         return
 
 
