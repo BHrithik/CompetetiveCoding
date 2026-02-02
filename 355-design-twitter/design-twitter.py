@@ -1,42 +1,48 @@
 class Twitter:
 
     def __init__(self):
-        self.posts = {}
-        self.follow_dict = {}
+        self.post_map = {}
+        self.follow_map = {}
         self.time = 0
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        if userId not in self.posts:
-            self.posts[userId] = []
-        self.posts[userId].append([-self.time,userId,tweetId])
+        if userId not in self.post_map:
+            self.post_map[userId] = []
+        self.post_map[userId].append([-self.time,tweetId])
         self.time += 1
         return
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        ids = self.follow_dict[userId] if userId in self.follow_dict else set()
+        ids = self.follow_map[userId] if userId in self.follow_map else set()
         ids.add(userId)
         all_posts = []
-        heapq.heapify(all_posts)
+        res = []
         for id in ids:
-            user_posts = self.posts[id] if id in self.posts else []
-            for time, userId, tweetId in user_posts:
-                heapq.heappush(all_posts,[time,tweetId])
-        new_posts = []
-        while len(new_posts) < 10 and all_posts:
-            new_posts.append(heapq.heappop(all_posts)[1])
-        return new_posts
+            if id in self.post_map and self.post_map[id]:
+                posts = self.post_map[id]
+                index = len(posts)-1
+                time, tweetId = posts[index]
+                all_posts.append([time, id, tweetId,index-1])
+        heapq.heapify(all_posts)
+        while all_posts and len(res) < 10:
+            time, id, tweetId, index = heapq.heappop(all_posts)
+            res.append(tweetId)
+            if index >= 0:
+                time, tweetId = self.post_map[id][index]
+                heapq.heappush(all_posts,[time, id, tweetId, index-1])
+        return res
 
 
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.follow_dict:
-            self.follow_dict[followerId] = set()
-        self.follow_dict[followerId].add(followeeId)
+        if followerId not in self.follow_map:
+            self.follow_map[followerId] = set()
+        self.follow_map[followerId].add(followeeId)
         return
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followerId in self.follow_dict:
-            self.follow_dict[followerId].remove(followeeId)
+        if followerId in self.follow_map:
+            self.follow_map[followerId].remove(followeeId)
         return
 
 
